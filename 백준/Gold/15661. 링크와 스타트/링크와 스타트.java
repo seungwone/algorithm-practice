@@ -4,8 +4,7 @@ import java.util.*;
 class Main {
     static int N;
     static int[][] S;
-    static int R;
-    static int[] comb;
+    static boolean[] selected;
     static int answer;
 
     public static void main(String[] args) throws IOException {
@@ -21,62 +20,37 @@ class Main {
             }
         }
 
-        for (int i = 1; i <= N / 2; i++) {
-            R = i;
-            comb = new int[R];
-            combination(0, 0);
-        }
+        selected = new boolean[N];
+        dfs(0, 0);
 
         System.out.println(answer);
         br.close();
     }
 
-    public static void combination(int cnt, int start) {
-        if (cnt == R) {
-            List<Integer> team2 = new ArrayList<>();
+    public static void dfs(int cnt, int round) {
+        if (round == N || cnt == N / 2) {
+            int team1 = 0;
+            int team2 = 0;
+
             for (int i = 0; i < N; i++) {
-                boolean isContain = false;
-                for (int j = 0; j < comb.length; j++)
-                    if (comb[j] == i) {
-                        isContain = true;
-                        break;
-                    }
-                if (isContain)
-                    continue;
-                team2.add(i);
-            }
-            int team1Val = 0;
-            for (int i = 0; i < comb.length; i++) {
-                for (int j = i + 1; j < comb.length; j++) {
-                    int idx1 = comb[i];
-                    int idx2 = comb[j];
-
-                    team1Val += S[idx1][idx2];
-                    team1Val += S[idx2][idx1];
+                for (int j = i + 1; j < N; j++) {
+                    if (selected[i] != selected[j])
+                        continue;
+                    if (selected[i] == true)
+                        team1 += S[i][j] + S[j][i];
+                    else
+                        team2 += S[i][j] + S[j][i];
                 }
             }
 
-            int team2Val = 0;
-            for (int i = 0; i < team2.size(); i++) {
-                for (int j = i + 1; j < team2.size(); j++) {
-                    int idx1 = team2.get(i);
-                    int idx2 = team2.get(j);
-
-                    team2Val += S[idx1][idx2];
-                    team2Val += S[idx2][idx1];
-                }
-            }
-
-            int gap = Math.abs(team1Val - team2Val);
-
-            answer = Math.min(answer, gap);
+            answer = Math.min(answer, Math.abs(team1 - team2));
 
             return;
         }
 
-        for (int i = start; i < N; i++) {
-            comb[cnt] = i;
-            combination(cnt + 1, i + 1);
-        }
+        selected[round] = true;
+        dfs(cnt + 1, round + 1);
+        selected[round] = false;
+        dfs(cnt, round + 1);
     }
 }
