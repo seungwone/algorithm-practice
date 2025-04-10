@@ -26,7 +26,7 @@ class Main {
                 }
                 if (dq.isEmpty())
                     dq.add(y);
-                else if (dq.getLast() != y && y != 0)
+                else if (dq.getLast() != y)
                     dq.add(y);
             }
         }
