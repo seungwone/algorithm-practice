@@ -30,8 +30,8 @@ class Main {
             }
         }
 
-        Arrays.sort(list1);
-        Arrays.sort(list2);
+        Arrays.parallelSort(list1);
+        Arrays.parallelSort(list2);
 
         int p1 = 0;
         int p2 = n * n - 1;
