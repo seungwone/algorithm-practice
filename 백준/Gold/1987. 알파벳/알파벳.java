@@ -35,19 +35,6 @@ class Main {
     }
 
     public static void dfs(int curI, int curJ, int cnt, Set<Character> set) {
-        List<Character> list = new ArrayList<>();
-        for (char c : set)
-            list.add(c);
-        Collections.sort(list);
-        StringBuilder sb = new StringBuilder();
-        for (char c : list)
-            sb.append(c);
-        String key = sb.toString();
-        
-        if (isVisited[curI][curJ].contains(key))
-            return;
-        isVisited[curI][curJ].add(key);
-
         answer = Math.max(answer, cnt);
 
         for (int d = 0; d < 4; d++) {
