@@ -7,7 +7,6 @@ class Main {
     static int R;
     static int C;
     static char[][] board;
-    static Set<String>[][] isVisited;
     static int answer = 0;
 
     public static void main(String[] args) throws IOException {
@@ -16,35 +15,34 @@ class Main {
         R = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
         board = new char[R][C];
-        isVisited = new Set[R][C];
 
         for (int i = 0; i < R; i++) {
             String temp = br.readLine();
             for (int j = 0; j < C; j++) {
                 board[i][j] = temp.charAt(j);
-                isVisited[i][j] = new HashSet<>();
             }
         }
 
-        Set<Character> s = new HashSet<>();
-        s.add(board[0][0]);
-        dfs(0, 0, 1, s);
+        boolean[] isSelected = new boolean[26];
+        isSelected[board[0][0] - 'A'] = true;
+        dfs(0, 0, 1, isSelected);
 
         System.out.println(answer);
         br.close();
     }
 
-    public static void dfs(int curI, int curJ, int cnt, Set<Character> set) {
+    public static void dfs(int curI, int curJ, int cnt, boolean[] isSelected) {
         answer = Math.max(answer, cnt);
 
         for (int d = 0; d < 4; d++) {
             int nextI = curI + di[d];
             int nextJ = curJ + dj[d];
 
-            if (nextI >= 0 && nextI < R && nextJ >= 0 && nextJ < C && !set.contains(board[nextI][nextJ])) {
-                set.add(board[nextI][nextJ]);
-                dfs(nextI, nextJ, cnt + 1, set);
-                set.remove(board[nextI][nextJ]);
+            if (nextI >= 0 && nextI < R && nextJ >= 0 && nextJ < C && !isSelected[board[nextI][nextJ] - 'A']) {
+                char alpha = board[nextI][nextJ];
+                isSelected[alpha - 'A'] = true;
+                dfs(nextI, nextJ, cnt + 1, isSelected);
+                isSelected[alpha - 'A'] = false;
             }
         }
     }
