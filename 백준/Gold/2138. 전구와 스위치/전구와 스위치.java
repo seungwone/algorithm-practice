@@ -39,22 +39,10 @@ class Main {
             }
         }
 
-        boolean isPossible = true;
-        boolean isPossible2 = true;
-        for (int i = 1; i <= N; i++) {
-            if (cur[i] != target[i])
-                isPossible = false;
-            if (cur2[i] != target[i])
-                isPossible2 = false;
-
-            if (!isPossible && !isPossible2)
-                break;
-        }
-
-        if (isPossible)
+        if (cur[N] == target[N])
             answer = cnt;
 
-        if (isPossible2)
+        if (cur2[N] == target[N])
             answer = Math.min(answer, cnt2);
 
         if (answer == Integer.MAX_VALUE)
