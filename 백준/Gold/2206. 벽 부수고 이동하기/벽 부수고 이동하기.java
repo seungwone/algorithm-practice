@@ -8,8 +8,8 @@ class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
         boolean[][] map = new boolean[N + 1][M + 1];
-        int[][] isVisitedWithChance = new int[N + 1][M + 1];
-        int[][] isVisitedWithNoChance = new int[N + 1][M + 1];
+        boolean[][] isVisitedWithChance = new boolean[N + 1][M + 1];
+        boolean[][] isVisitedWithNoChance = new boolean[N + 1][M + 1];
         int[] di = {-1, 1, 0, 0};
         int[] dj = {0, 0, -1, 1};
         int answer = -1;
@@ -18,14 +18,12 @@ class Main {
             String temp = br.readLine();
             for (int j = 1; j <= M; j++) {
                 map[i][j] = temp.charAt(j - 1) == '1';
-                isVisitedWithChance[i][j] = Integer.MAX_VALUE;
-                isVisitedWithNoChance[i][j] = Integer.MAX_VALUE;
             }
         }
 
         Deque<Integer[]> dq = new ArrayDeque<>();
         dq.add(new Integer[] {1, 1, 1, 1});
-        isVisitedWithChance[1][1] = 1;
+        isVisitedWithChance[1][1] = true;
 
         while (!dq.isEmpty()) {
             Integer[] ele = dq.remove();
@@ -46,18 +44,18 @@ class Main {
                 if (nextI >= 1 && nextI <= N && nextJ >= 1 && nextJ <= M) {
 
                     if (map[nextI][nextJ] == true) {
-                        if (chance == 1 && isVisitedWithNoChance[nextI][nextJ] > cnt + 1) {
-                            isVisitedWithNoChance[nextI][nextJ] = cnt + 1;
+                        if (chance == 1 && !isVisitedWithNoChance[nextI][nextJ]) {
+                            isVisitedWithNoChance[nextI][nextJ] = true;
                             dq.add(new Integer[] {nextI, nextJ, cnt + 1, 0});
                         }
                     }
                     else {
-                        if (chance == 1 && isVisitedWithChance[nextI][nextJ] > cnt + 1) {
-                            isVisitedWithChance[nextI][nextJ] = cnt + 1;
+                        if (chance == 1 && !isVisitedWithChance[nextI][nextJ]) {
+                            isVisitedWithChance[nextI][nextJ] = true;
                             dq.add(new Integer[] {nextI, nextJ, cnt + 1, chance});
                         }
-                        else if (chance == 0 && isVisitedWithNoChance[nextI][nextJ] > cnt + 1) {
-                            isVisitedWithNoChance[nextI][nextJ] = cnt + 1;
+                        else if (chance == 0 && !isVisitedWithNoChance[nextI][nextJ]) {
+                            isVisitedWithNoChance[nextI][nextJ] = true;
                             dq.add(new Integer[] {nextI, nextJ, cnt + 1, chance});
                         }
                     }
