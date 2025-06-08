@@ -21,12 +21,12 @@ class Main {
             }
         }
 
-        Deque<Integer[]> dq = new ArrayDeque<>();
-        dq.add(new Integer[] {1, 1, 1, 1});
+        Deque<int[]> dq = new ArrayDeque<>();
+        dq.add(new int[] {1, 1, 1, 1});
         isVisitedWithChance[1][1] = true;
 
         while (!dq.isEmpty()) {
-            Integer[] ele = dq.remove();
+            int[] ele = dq.remove();
             int curI = ele[0];
             int curJ = ele[1];
             int cnt = ele[2];
@@ -46,17 +46,17 @@ class Main {
                     if (map[nextI][nextJ] == true) {
                         if (chance == 1 && !isVisitedWithNoChance[nextI][nextJ]) {
                             isVisitedWithNoChance[nextI][nextJ] = true;
-                            dq.add(new Integer[] {nextI, nextJ, cnt + 1, 0});
+                            dq.add(new int[] {nextI, nextJ, cnt + 1, 0});
                         }
                     }
                     else {
                         if (chance == 1 && !isVisitedWithChance[nextI][nextJ]) {
                             isVisitedWithChance[nextI][nextJ] = true;
-                            dq.add(new Integer[] {nextI, nextJ, cnt + 1, chance});
+                            dq.add(new int[] {nextI, nextJ, cnt + 1, chance});
                         }
-                        else if (chance == 0 && !isVisitedWithNoChance[nextI][nextJ]) {
+                        else if (chance == 0 && !isVisitedWithNoChance[nextI][nextJ] && !isVisitedWithChance[nextI][nextJ]) {
                             isVisitedWithNoChance[nextI][nextJ] = true;
-                            dq.add(new Integer[] {nextI, nextJ, cnt + 1, chance});
+                            dq.add(new int[] {nextI, nextJ, cnt + 1, chance});
                         }
                     }
                     
