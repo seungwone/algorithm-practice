@@ -56,7 +56,7 @@ class Main {
                             isVisitedWithChance[nextI][nextJ] = cnt + 1;
                             dq.add(new Integer[] {nextI, nextJ, cnt + 1, chance});
                         }
-                        else if (chance == 0 && isVisitedWithNoChance[nextI][nextJ] > cnt + 1 && isVisitedWithChance[nextI][nextJ] > cnt + 1) {
+                        else if (chance == 0 && isVisitedWithNoChance[nextI][nextJ] > cnt + 1) {
                             isVisitedWithNoChance[nextI][nextJ] = cnt + 1;
                             dq.add(new Integer[] {nextI, nextJ, cnt + 1, chance});
                         }
