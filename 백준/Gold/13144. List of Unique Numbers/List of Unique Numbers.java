@@ -7,25 +7,23 @@ class Main {
         int N = Integer.parseInt(br.readLine());
         int[] arr = new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        Set<Integer> set = new HashSet<>();
+        boolean[] isVisited = new boolean[100001];
         long answer = 0;
-        for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
 
         int j = 0;
         for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
             int front = arr[i];
 
-            while (set.contains(front)) {
+            while (isVisited[front]) {
                 answer += i - j;
-                set.remove(arr[j]);
+                isVisited[arr[j]] = false;
                 j++;
             }
-            set.add(front);
+            isVisited[front] = true;
         }
 
-        for (int l = set.size(); l > 0; l--) {
+        for (int l = N - j; l > 0; l--) {
             answer += l;
         }
 
