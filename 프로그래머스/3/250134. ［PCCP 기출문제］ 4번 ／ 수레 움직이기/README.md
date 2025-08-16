@@ -1,10 +1,10 @@
 # [level 3] [PCCP 기출문제] 4번 / 수레 움직이기 - 250134 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/250134?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/250134) 
 
 ### 성능 요약
 
-메모리: 86.4 MB, 시간: 1.70 ms
+메모리: 72.8 MB, 시간: 3.74 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 08월 16일 17:51:11
+2025년 08월 16일 17:52:25
 
 ### 문제 설명
 

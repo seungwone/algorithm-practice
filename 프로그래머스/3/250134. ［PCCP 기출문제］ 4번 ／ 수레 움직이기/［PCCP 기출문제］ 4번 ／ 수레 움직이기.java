@@ -59,9 +59,9 @@ class Solution {
     }
     
     public static void dfs(int redI, int redJ, int blueI, int blueJ, int time) {
-        if (time >= answer) {
-            return;
-        }
+        // if (time >= answer) {
+        //     return;
+        // }
         
         if (redI == redEdI && redJ == redEdJ && blueI == blueEdI && blueJ == blueEdJ) {
             answer = Math.min(answer, time);
