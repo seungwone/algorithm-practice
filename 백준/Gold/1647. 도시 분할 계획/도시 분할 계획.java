@@ -49,9 +49,12 @@ class Main {
         Collections.sort(edges, (x, y) -> Integer.compare(x[2], y[2]));
 
         int cnt = 0;
-        int temp = Integer.MIN_VALUE;
 
         for (int[] ele : edges) {
+            if (cnt == N - 2) {
+                break;
+            }
+
             int A = ele[0];
             int B = ele[1];
             int C = ele[2];
@@ -62,15 +65,10 @@ class Main {
 
             union(A, B);
             answer += C;
-            temp = Math.max(temp, C);
             cnt++;
-
-            if (cnt == N - 1) {
-                break;
-            }
         }
 
-        System.out.println(answer - temp);
+        System.out.println(answer);
         br.close();
     }
 }
