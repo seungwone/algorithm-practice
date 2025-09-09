@@ -31,7 +31,7 @@ class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
         int answer = 0;
-        Integer[][] edges = new Integer[M][3];
+        List<int[]> edges = new ArrayList<>();
         parent = new int[N + 1];
 
         for (int i = 1; i <= N; i++) {
@@ -40,17 +40,18 @@ class Main {
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            edges[i][0] = Integer.parseInt(st.nextToken());
-            edges[i][1] = Integer.parseInt(st.nextToken());
-            edges[i][2] = Integer.parseInt(st.nextToken());
+            int A = Integer.parseInt(st.nextToken());
+            int B = Integer.parseInt(st.nextToken());
+            int C = Integer.parseInt(st.nextToken());
+            edges.add(new int[] {A, B, C});
         }
 
-        Arrays.sort(edges, (x, y) -> Integer.compare(x[2], y[2]));
+        Collections.sort(edges, (x, y) -> Integer.compare(x[2], y[2]));
 
         int cnt = 0;
         int temp = Integer.MIN_VALUE;
 
-        for (Integer[] ele : edges) {
+        for (int[] ele : edges) {
             int A = ele[0];
             int B = ele[1];
             int C = ele[2];
