@@ -31,7 +31,7 @@ class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
         int answer = 0;
-        List<int[]> edges = new ArrayList<>();
+        Queue<int[]> pq = new PriorityQueue<>((x, y) -> Integer.compare(x[2], y[2]));
         parent = new int[N + 1];
 
         for (int i = 1; i <= N; i++) {
@@ -43,18 +43,17 @@ class Main {
             int A = Integer.parseInt(st.nextToken());
             int B = Integer.parseInt(st.nextToken());
             int C = Integer.parseInt(st.nextToken());
-            edges.add(new int[] {A, B, C});
+            pq.add(new int[] {A, B, C});
         }
-
-        Collections.sort(edges, (x, y) -> Integer.compare(x[2], y[2]));
 
         int cnt = 0;
 
-        for (int[] ele : edges) {
+        while (!pq.isEmpty()) {
             if (cnt == N - 2) {
                 break;
             }
 
+            int[] ele = pq.remove();
             int A = ele[0];
             int B = ele[1];
             int C = ele[2];
