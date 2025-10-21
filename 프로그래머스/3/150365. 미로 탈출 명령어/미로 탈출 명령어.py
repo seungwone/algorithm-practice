@@ -22,7 +22,6 @@ def solution(n, m, x, y, r, c, k):
             next_i = cur_i + di[d]
             next_j = cur_j + dj[d]
             next_str = cur_str + dd[d]
-            
             if 1 <= next_i <= n and 1 <= next_j <= m:
                 stack.append((next_i, next_j, next_str))
     
