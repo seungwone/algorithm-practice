@@ -65,9 +65,6 @@ def solution(n, paths, gates, summits):
         adj_li[i].append(j)
         adj_li[j].append(i)
     
-    parent = [i for i in range(n + 1)]
-    is_g_in = [False] * (n + 1)
-    is_s_in = [False] * (n + 1)
     is_visited = [False] * (n + 1)
     
     for summit in sorted(summits):
