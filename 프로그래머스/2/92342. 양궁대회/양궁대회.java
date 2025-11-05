@@ -55,9 +55,7 @@ class Solution {
                         setArr[j] = new HashSet<>(setArr[j - p]);
                         setArr[j].add(i);
                     }
-                    else if(tempMinEle == curMinEle) {
-                        return new int[1];
-                    }
+                    
                 }
             }
         }
